@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{fc0be9af-5132-4880-9f27-02dc0b6a8685}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile>gekko.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <ScriptArguments>--backtest --config config.js</ScriptArguments>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+    <NodejsPort>3000</NodejsPort>
+    <LaunchUrl>
+    </LaunchUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Content Include="SECRET-api-keys.json" />
+    <Content Include="CONTRIBUTING.md" />
+    <Content Include="README.md" />
+    <Content Include="config.js" />
+    <Content Include="gekko.js" />
+    <Content Include="plugins.js" />
+    <Content Include="sample-config.js" />
+    <Content Include="subscriptions.js" />
+    <Content Include="config\backtest.toml" />
+    <Content Include="config\general.toml" />
+    <Content Include="core\candleBatcher.js" />
+    <Content Include="core\emitter.js" />
+    <Content Include="core\gekkoStream.js" />
+    <Content Include="core\log.js" />
+    <Content Include="core\pipeline.js" />
+    <Content Include="core\pluginUtil.js" />
+    <Content Include="core\prepareDateRange.js" />
+    <Content Include="core\stats.js" />
+    <Content Include="core\talib.js" />
+    <Content Include="core\tulind.js" />
+    <Content Include="core\util.js" />
+    <Content Include="exchange\package-lock.json" />
+    <Content Include="exchange\package.json" />
+    <Content Include="exchange\README.md" />
+    <Content Include="exchange\dependencyCheck.js" />
+    <Content Include="exchange\exchangeChecker.js" />
+    <Content Include="exchange\exchangeErrors.js" />
+    <Content Include="exchange\exchangeUtils.js" />
+    <Content Include="exchange\gekkoBroker.js" />
+    <Content Include="exchange\portfolioManager.js" />
+    <Content Include="exchange\trigger.js" />
+    <Content Include="plugins\adviceLogger.js" />
+    <Content Include="plugins\backtestResultExporter.js" />
+    <Content Include="plugins\campfire.js" />
+    <Content Include="plugins\candleUploader.js" />
+    <Content Include="plugins\childToParent.js" />
+    <Content Include="plugins\eventLogger.js" />
+    <Content Include="plugins\ifttt.js" />
+    <Content Include="plugins\ircbot.js" />
+    <Content Include="plugins\kodi.js" />
+    <Content Include="plugins\mailer.js" />
+    <Content Include="plugins\pushbullet.js" />
+    <Content Include="plugins\pushover.js" />
+    <Content Include="plugins\redisBeacon.js" />
+    <Content Include="plugins\slack.js" />
+    <Content Include="plugins\telegrambot.js" />
+    <Content Include="plugins\twitter.js" />
+    <Content Include="plugins\webserver.js" />
+    <Content Include="plugins\xmppbot.js" />
+    <Content Include="strategies\CCI.js" />
+    <Content Include="strategies\custom.js" />
+    <Content Include="strategies\DEBUG_single-advice.js" />
+    <Content Include="strategies\DEBUG_toggle-advice.js" />
+    <Content Include="strategies\DEMA.js" />
+    <Content Include="strategies\HeikinAshTrendScalp.js" />
+    <Content Include="strategies\MACD.js" />
+    <Content Include="strategies\moon.js" />
+    <Content Include="strategies\noop.js" />
+    <Content Include="strategies\PPO.js" />
+    <Content Include="strategies\RSI.js" />
+    <Content Include="strategies\sma1020.js" />
+    <Content Include="strategies\StochRSI.js" />
+    <Content Include="strategies\talib-macd.js" />
+    <Content Include="strategies\TMA.js" />
+    <Content Include="strategies\TSI.js" />
+    <Content Include="strategies\tulip-adx.js" />
+    <Content Include="strategies\tulip-macd.js" />
+    <Content Include="strategies\tulip-multi-strat.js" />
+    <Content Include="strategies\UO.js" />
+    <Content Include="strategies\varPPO.js" />
+    <Content Include="test\test-config.json" />
+    <Content Include="test\candleBatcher.js" />
+    <Content Include="test\marketFetcher.js" />
+    <Content Include="test\tradeBatcher.js" />
+    <Content Include="test\_prepare.js" />
+    <Content Include="web\apiKeyManager.js" />
+    <Content Include="web\baseUIconfig.js" />
+    <Content Include="web\isWindows.js" />
+    <Content Include="web\server.js" />
+    <Content Include="config\adapters\mongodb.toml" />
+    <Content Include="config\adapters\postgresql.toml" />
+    <Content Include="config\adapters\sqlite.toml" />
+    <Content Include="config\plugins\candleWriter.toml" />
+    <Content Include="config\plugins\paperTrader.toml" />
+    <Content Include="config\plugins\performanceAnalyzer.toml" />
+    <Content Include="config\plugins\pushbullet.toml" />
+    <Content Include="config\plugins\trader.toml" />
+    <Content Include="config\plugins\tradingAdvisor.toml" />
+    <Content Include="config\strategies\CCI.toml" />
+    <Content Include="config\strategies\custom.toml" />
+    <Content Include="config\strategies\DEMA.toml" />
+    <Content Include="config\strategies\MACD.toml" />
+    <Content Include="config\strategies\moon.toml" />
+    <Content Include="config\strategies\PPO.toml" />
+    <Content Include="config\strategies\RSI.toml" />
+    <Content Include="config\strategies\StochRSI.toml" />
+    <Content Include="config\strategies\talib-macd.toml" />
+    <Content Include="config\strategies\TMA.toml" />
+    <Content Include="config\strategies\TSI.toml" />
+    <Content Include="config\strategies\tulip-adx.toml" />
+    <Content Include="config\strategies\tulip-macd.toml" />
+    <Content Include="config\strategies\tulip-multi-strat.toml" />
+    <Content Include="config\strategies\UO.toml" />
+    <Content Include="config\strategies\varPPO.toml" />
+    <Content Include="core\budfox\budfox.js" />
+    <Content Include="core\budfox\candleCreator.js" />
+    <Content Include="core\budfox\candleManager.js" />
+    <Content Include="core\budfox\heart.js" />
+    <Content Include="core\budfox\marketDataProvider.js" />
+    <Content Include="core\budfox\marketFetcher.js" />
+    <Content Include="core\budfox\tradeBatcher.js" />
+    <Content Include="core\markets\backtest.js" />
+    <Content Include="core\markets\importer.js" />
+    <Content Include="core\markets\leech.js" />
+    <Content Include="core\markets\realtime.js" />
+    <Content Include="core\tools\candleLoader.js" />
+    <Content Include="core\tools\configBuilder.js" />
+    <Content Include="core\tools\dataStitcher.js" />
+    <Content Include="core\tools\dateRangeScanner.js" />
+    <Content Include="core\workers\datasetScan\parent.js" />
+    <Content Include="core\workers\dateRangeScan\child.js" />
+    <Content Include="core\workers\dateRangeScan\parent.js" />
+    <Content Include="core\workers\loadCandles\child.js" />
+    <Content Include="core\workers\loadCandles\parent.js" />
+    <Content Include="core\workers\pipeline\child.js" />
+    <Content Include="core\workers\pipeline\parent.js" />
+    <Content Include="core\workers\pipeline\messageHandlers\backtestHandler.js" />
+    <Content Include="core\workers\pipeline\messageHandlers\importerHandler.js" />
+    <Content Include="core\workers\pipeline\messageHandlers\realtimeHandler.js" />
+    <Content Include="docs\commandline\about_the_commandline.md" />
+    <Content Include="docs\commandline\backtesting.md" />
+    <Content Include="docs\commandline\Importing.md" />
+    <Content Include="docs\commandline\plugins.md" />
+    <Content Include="docs\commandline\tradebot.md" />
+    <Content Include="docs\extending\add_an_exchange.md" />
+    <Content Include="docs\extending\add_a_plugin.md" />
+    <Content Include="docs\extending\other_software.md" />
+    <Content Include="docs\features\backtesting.md" />
+    <Content Include="docs\features\importing.md" />
+    <Content Include="docs\features\paper_trading.md" />
+    <Content Include="docs\features\trading_bot.md" />
+    <Content Include="docs\gekko-broker\introduction.md" />
+    <Content Include="docs\gekko-broker\sticky_order.md" />
+    <Content Include="docs\gekko-broker\wrapper_api.md" />
+    <Content Include="docs\installation\configuring_gekko_on_a_server.md" />
+    <Content Include="docs\installation\installing_gekko.md" />
+    <Content Include="docs\installation\installing_gekko_on_raspberry_pi_2_or_3.md" />
+    <Content Include="docs\installation\installing_gekko_on_windows.md" />
+    <Content Include="docs\installation\installing_gekko_on_windows_with_bash_on_windows_10.md" />
+    <Content Include="docs\installation\installing_gekko_using_docker.md" />
+    <Content Include="docs\installation\updating_gekko.md" />
+    <Content Include="docs\internals\architecture.md" />
+    <Content Include="docs\internals\budfox.md" />
+    <Content Include="docs\internals\events.md" />
+    <Content Include="docs\internals\gekko_ui.md" />
+    <Content Include="docs\internals\plugins.md" />
+    <Content Include="docs\internals\server_api.md" />
+    <Content Include="docs\introduction\about_gekko.md" />
+    <Content Include="docs\introduction\getting_help.md" />
+    <Content Include="docs\introduction\roadmap.md" />
+    <Content Include="docs\introduction\scope.md" />
+    <Content Include="docs\introduction\supported_exchanges.md" />
+    <Content Include="docs\introduction\supporting_the_project.md" />
+    <Content Include="docs\strategies\creating_a_strategy.md" />
+    <Content Include="docs\strategies\gekko_indicators.md" />
+    <Content Include="docs\strategies\introduction.md" />
+    <Content Include="docs\strategies\talib_indicators.md" />
+    <Content Include="docs\strategies\tulip_indicators.md" />
+    <Content Include="exchange\orders\index.js" />
+    <Content Include="exchange\orders\limit.js" />
+    <Content Include="exchange\orders\order.js" />
+    <Content Include="exchange\orders\states.js" />
+    <Content Include="exchange\orders\sticky.js" />
+    <Content Include="exchange\triggers\index.js" />
+    <Content Include="exchange\triggers\trailingStop.js" />
+    <Content Include="exchange\wrappers\binance-markets.json" />
+    <Content Include="exchange\wrappers\bitfinex-markets.json" />
+    <Content Include="exchange\wrappers\coinbase-markets.json" />
+    <Content Include="exchange\wrappers\coinfalcon-markets.json" />
+    <Content Include="exchange\wrappers\exmo-markets.json" />
+    <Content Include="exchange\wrappers\kraken-markets.json" />
+    <Content Include="exchange\wrappers\poloniex-markets.json" />
+    <Content Include="exchange\wrappers\quadriga-markets.json" />
+    <Content Include="exchange\wrappers\binance.js" />
+    <Content Include="exchange\wrappers\bitfinex.js" />
+    <Content Include="exchange\wrappers\bittrex.js" />
+    <Content Include="exchange\wrappers\coinfalcon.js" />
+    <Content Include="exchange\wrappers\coingi.js" />
+    <Content Include="exchange\wrappers\DEBUG_exchange-simulator.js" />
+    <Content Include="exchange\wrappers\exmo.js" />
+    <Content Include="exchange\wrappers\gdax.js" />
+    <Content Include="exchange\wrappers\kraken.js" />
+    <Content Include="exchange\wrappers\lakebtc.js" />
+    <Content Include="exchange\wrappers\luno.js" />
+    <Content Include="exchange\wrappers\poloniex.js" />
+    <Content Include="exchange\util\genMarketFiles\update-binance.js" />
+    <Content Include="exchange\util\genMarketFiles\update-bitfinex.js" />
+    <Content Include="exchange\util\genMarketFiles\update-coinbase.js" />
+    <Content Include="exchange\util\genMarketFiles\update-coinfalcon.js" />
+    <Content Include="exchange\util\genMarketFiles\update-kraken.js" />
+    <Content Include="importers\exchanges\binance.js" />
+    <Content Include="importers\exchanges\bitfinex.js" />
+    <Content Include="importers\exchanges\btcc.js" />
+    <Content Include="importers\exchanges\coinfalcon.js" />
+    <Content Include="importers\exchanges\gdax.js" />
+    <Content Include="importers\exchanges\kraken.js" />
+    <Content Include="importers\exchanges\luno.js" />
+    <Content Include="importers\exchanges\poloniex.js" />
+    <Content Include="plugins\mongodb\handle.js" />
+    <Content Include="plugins\mongodb\reader.js" />
+    <Content Include="plugins\mongodb\scanner.js" />
+    <Content Include="plugins\mongodb\util.js" />
+    <Content Include="plugins\mongodb\writer.js" />
+    <Content Include="plugins\paperTrader\paperTrader.js" />
+    <Content Include="plugins\performanceAnalyzer\logger.js" />
+    <Content Include="plugins\performanceAnalyzer\performanceAnalyzer.js" />
+    <Content Include="plugins\postgresql\handle.js" />
+    <Content Include="plugins\postgresql\reader.js" />
+    <Content Include="plugins\postgresql\scanner.js" />
+    <Content Include="plugins\postgresql\util.js" />
+    <Content Include="plugins\postgresql\writer.js" />
+    <Content Include="plugins\sqlite\handle.js" />
+    <Content Include="plugins\sqlite\reader.js" />
+    <Content Include="plugins\sqlite\scanner.js" />
+    <Content Include="plugins\sqlite\util.js" />
+    <Content Include="plugins\sqlite\writer.js" />
+    <Content Include="plugins\trader\trader.js" />
+    <Content Include="plugins\tradingAdvisor\asyncIndicatorRunner.js" />
+    <Content Include="plugins\tradingAdvisor\baseTradingMethod.js" />
+    <Content Include="plugins\tradingAdvisor\tradingAdvisor.js" />
+    <Content Include="strategies\indicators\CCI.js" />
+    <Content Include="strategies\indicators\DEMA.js" />
+    <Content Include="strategies\indicators\EMA.js" />
+    <Content Include="strategies\indicators\LRC.js" />
+    <Content Include="strategies\indicators\MACD.js" />
+    <Content Include="strategies\indicators\PPO.js" />
+    <Content Include="strategies\indicators\RSI.js" />
+    <Content Include="strategies\indicators\SMA.js" />
+    <Content Include="strategies\indicators\SMMA.js" />
+    <Content Include="strategies\indicators\TSI.js" />
+    <Content Include="strategies\indicators\UO.js" />
+    <Content Include="test\exchanges\bitstamp.js" />
+    <Content Include="test\indicators\cci.js" />
+    <Content Include="test\indicators\dema.js" />
+    <Content Include="test\indicators\ema.js" />
+    <Content Include="test\indicators\macd.js" />
+    <Content Include="test\indicators\ppo.js" />
+    <Content Include="test\indicators\rsi.js" />
+    <Content Include="test\indicators\sma.js" />
+    <Content Include="test\indicators\smma.js" />
+    <Content Include="test\plugins\portfolioManager.js" />
+    <Content Include="test\triggers\trailingStop.js" />
+    <Content Include="test\exchanges\data\bitstamp_trades.json" />
+    <Content Include="web\routes\apiKeys.js" />
+    <Content Include="web\routes\backtest.js" />
+    <Content Include="web\routes\baseConfig.js" />
+    <Content Include="web\routes\configPart.js" />
+    <Content Include="web\routes\deleteGekko.js" />
+    <Content Include="web\routes\exchanges.js" />
+    <Content Include="web\routes\getCandles.js" />
+    <Content Include="web\routes\import.js" />
+    <Content Include="web\routes\info.js" />
+    <Content Include="web\routes\list.js" />
+    <Content Include="web\routes\scanDatasets.js" />
+    <Content Include="web\routes\scanDateRange.js" />
+    <Content Include="web\routes\startGekko.js" />
+    <Content Include="web\routes\stopGekko.js" />
+    <Content Include="web\routes\strategies.js" />
+    <Content Include="web\state\cache.js" />
+    <Content Include="web\state\gekkoManager.js" />
+    <Content Include="web\state\listManager.js" />
+    <Content Include="web\state\logger.js" />
+    <Content Include="web\state\reduceState.js" />
+    <Content Include="web\vue\package-lock.json" />
+    <Content Include="web\vue\package.json" />
+    <Content Include="web\vue\babel.config.js" />
+    <Content Include="web\vue\vue.config.js" />
+    <Content Include="web\vue\dist\index.html" />
+    <Content Include="web\vue\dist\app.730569ff.css" />
+    <Content Include="web\vue\dist\app.5e99ecf7.js" />
+    <Content Include="web\vue\dist\chunk-vendors.b9a11975.js" />
+    <Content Include="web\vue\dist\UIconfig.js" />
+    <Content Include="web\vue\public\index.html" />
+    <Content Include="web\vue\public\UIconfig.js" />
+    <Content Include="web\vue\src\main.js" />
+    <Content Include="web\vue\dist\static\gekko.jpg" />
+    <Content Include="web\vue\dist\vendor\furtive.min.css" />
+    <Content Include="web\vue\dist\vendor\select-arrow.png" />
+    <Content Include="web\vue\dist\vendor\d3.js" />
+    <Content Include="web\vue\dist\vendor\humanize-duration.js" />
+    <Content Include="web\vue\dist\vendor\moment.js" />
+    <Content Include="web\vue\dist\vendor\reconnecting-websocket.min.js" />
+    <Content Include="web\vue\dist\vendor\toml.js" />
+    <Content Include="web\vue\public\static\gekko.jpg" />
+    <Content Include="web\vue\public\vendor\furtive.min.css" />
+    <Content Include="web\vue\public\vendor\select-arrow.png" />
+    <Content Include="web\vue\public\vendor\d3.js" />
+    <Content Include="web\vue\public\vendor\humanize-duration.js" />
+    <Content Include="web\vue\public\vendor\moment.js" />
+    <Content Include="web\vue\public\vendor\reconnecting-websocket.min.js" />
+    <Content Include="web\vue\public\vendor\toml.js" />
+    <Content Include="web\vue\src\d3\chart3.js" />
+    <Content Include="web\vue\src\d3\chart4.js" />
+    <Content Include="web\vue\src\d3\message.js" />
+    <Content Include="web\vue\src\store\index.js" />
+    <Content Include="web\vue\src\store\init.js" />
+    <Content Include="web\vue\src\tools\ajax.js" />
+    <Content Include="web\vue\src\tools\api.js" />
+    <Content Include="web\vue\src\tools\marked.js" />
+    <Content Include="web\vue\src\components\global\ws.js" />
+    <Content Include="web\vue\src\components\global\mixins\dataset.js" />
+    <Content Include="web\vue\src\store\modules\config\mutations.js" />
+    <Content Include="web\vue\src\store\modules\config\sync.js" />
+    <Content Include="web\vue\src\store\modules\gekkos\mutations.js" />
+    <Content Include="web\vue\src\store\modules\gekkos\sync.js" />
+    <Content Include="web\vue\src\store\modules\imports\mutations.js" />
+    <Content Include="web\vue\src\store\modules\imports\sync.js" />
+    <Content Include="web\vue\src\store\modules\messages\mutations.js" />
+    <Content Include="web\vue\src\store\modules\notifications\mutations.js" />
+    <Content Include="web\vue\src\store\modules\notifications\sync.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="config" />
+    <Folder Include="config\adapters" />
+    <Folder Include="config\plugins" />
+    <Folder Include="config\strategies" />
+    <Folder Include="core" />
+    <Folder Include="core\budfox" />
+    <Folder Include="core\markets" />
+    <Folder Include="core\tools" />
+    <Folder Include="core\workers" />
+    <Folder Include="core\workers\datasetScan" />
+    <Folder Include="core\workers\dateRangeScan" />
+    <Folder Include="core\workers\loadCandles" />
+    <Folder Include="core\workers\pipeline" />
+    <Folder Include="core\workers\pipeline\messageHandlers" />
+    <Folder Include="docs" />
+    <Folder Include="docs\commandline" />
+    <Folder Include="docs\extending" />
+    <Folder Include="docs\features" />
+    <Folder Include="docs\gekko-broker" />
+    <Folder Include="docs\installation" />
+    <Folder Include="docs\internals" />
+    <Folder Include="docs\introduction" />
+    <Folder Include="docs\strategies" />
+    <Folder Include="exchange" />
+    <Folder Include="exchange\orders" />
+    <Folder Include="exchange\triggers" />
+    <Folder Include="exchange\util" />
+    <Folder Include="exchange\util\genMarketFiles" />
+    <Folder Include="exchange\wrappers" />
+    <Folder Include="history" />
+    <Folder Include="importers" />
+    <Folder Include="importers\exchanges" />
+    <Folder Include="logs" />
+    <Folder Include="modules\" />
+    <Folder Include="plugins" />
+    <Folder Include="plugins\mongodb" />
+    <Folder Include="plugins\paperTrader" />
+    <Folder Include="plugins\performanceAnalyzer" />
+    <Folder Include="plugins\postgresql" />
+    <Folder Include="plugins\sqlite" />
+    <Folder Include="plugins\trader" />
+    <Folder Include="plugins\tradingAdvisor" />
+    <Folder Include="strategies" />
+    <Folder Include="strategies\indicators" />
+    <Folder Include="test" />
+    <Folder Include="test\exchanges" />
+    <Folder Include="test\exchanges\data" />
+    <Folder Include="test\indicators" />
+    <Folder Include="test\plugins" />
+    <Folder Include="test\triggers" />
+    <Folder Include="web" />
+    <Folder Include="web\routes" />
+    <Folder Include="web\state" />
+    <Folder Include="web\vue" />
+    <Folder Include="web\vue\dist" />
+    <Folder Include="web\vue\dist\static" />
+    <Folder Include="web\vue\dist\vendor" />
+    <Folder Include="web\vue\public" />
+    <Folder Include="web\vue\public\static" />
+    <Folder Include="web\vue\public\vendor" />
+    <Folder Include="web\vue\src" />
+    <Folder Include="web\vue\src\components" />
+    <Folder Include="web\vue\src\components\backtester" />
+    <Folder Include="web\vue\src\components\backtester\result" />
+    <Folder Include="web\vue\src\components\config" />
+    <Folder Include="web\vue\src\components\data" />
+    <Folder Include="web\vue\src\components\data\import" />
+    <Folder Include="web\vue\src\components\gekko" />
+    <Folder Include="web\vue\src\components\global" />
+    <Folder Include="web\vue\src\components\global\configbuilder" />
+    <Folder Include="web\vue\src\components\global\mixins" />
+    <Folder Include="web\vue\src\components\layout" />
+    <Folder Include="web\vue\src\d3" />
+    <Folder Include="web\vue\src\store" />
+    <Folder Include="web\vue\src\store\modules" />
+    <Folder Include="web\vue\src\store\modules\config" />
+    <Folder Include="web\vue\src\store\modules\gekkos" />
+    <Folder Include="web\vue\src\store\modules\imports" />
+    <Folder Include="web\vue\src\store\modules\messages" />
+    <Folder Include="web\vue\src\store\modules\notifications" />
+    <Folder Include="web\vue\src\tools" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="modules\Indicators.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="plugins\rtest.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="strategies\MarketGodV4.js" />
+    <Compile Include="strategies\MarketGodV4_bac.js" />
+    <Compile Include="strategies\MarketGodV3.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
