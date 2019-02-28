@@ -1,0 +1,56 @@
+//@version=3
+study(title="MarketGod v5.1", shorttitle="Market God v5.1", overlay = true)
+
+Title = input(true, title="Welcome to Market God v 5.1 - This indicator is comprised of several components, inclduing Heikin Ashi candle values, EMA golden crosses, RSI divergences, and more. Feedback is always appreciated, as I have spent DAYS at a time improving this tool for all to learn and use in their trading.")
+Title2 = input(true, title="This indicator has been designed to work on the majority, if not all, tickers provided by TradingView. It was designed on BTCUSD but has been tested on traditional equities, FOREX, indicies and more. It was designed using the hourly, 4h, 6h, and 1D timeframes but is ideally good on all of them. Expect the lower frames to be less consistent (for all you 1 minute traders). Updates will continue to be provided and Ive been promising a blog on this in the near future. Stay tuned.")
+Title3 = input(true, title="v 5.1 is one of the best and most accurate yet. I believe I have fixed the ghost alert issue entirely, and have also added for the buy/sells to only paint once the candle has closed. This shold eliminate issues on several fronts, but I will continue to fight bugs as the come about")
+Title4= input(true, title="Follow me on Twitter at https://twitter.com/kingthies")
+Title5= input(true,title="Tips via BTC: 3KtXXkwKnv3tarRx6ttntu633aantJFZLS ")
+Title6= input(true,title='Tips via Paypal: https://www.paypal.me/emthies')
+//HA// 
+haopen = security(heikinashi(tickerid), period, open)
+hahigh = security(heikinashi(tickerid), period, high)
+halow = security(heikinashi(tickerid), period, low)
+haclose = security(heikinashi(tickerid), period, close) 
+heikUpColor() => haclose > haopen
+heikDownColor() => haclose <= haopen
+price = haclose 
+source = haclose
+
+//SRSI 
+smoothK = 3
+smoothD = 3
+lengthRSI = 9
+lengthStoch = 9
+rsi1 = rsi(price, lengthRSI)
+k = sma(stoch(rsi1, rsi1, rsi1, lengthStoch), smoothK)
+d = sma(k, smoothD)
+
+//DEMA TEMA
+e1 = ema(price, 9)
+e2 = ema(e1, 9)
+ema1 = ema(price, 9)
+ema2 = ema(ema1, 9)
+ema3 = ema(ema2, 9)
+tema = 3 * (ema1 - ema2) + ema3
+dema = 2 * e1 - e2
+avda = avg(dema,tema)
+
+Buy = rising(avda,1) and rising(k,1)
+Sell = falling(avda,1) and falling(k,1)
+
+OscHelper = 0.0
+OscHelper := Buy ? 1 : Sell ? 0 : OscHelper[1]
+
+BuySignal = Buy and OscHelper[1]==0 
+SellSignal = Sell and OscHelper[1]==1
+
+//PLOT 
+plotshape(BuySignal, color=green, text='Buy', location= location.belowbar,style= shape.labelup,textcolor=white, offset=0, size = size.tiny, title="Buy Alert")
+plotshape(SellSignal, color=maroon, text='Sell', location= location.abovebar,style= shape.labeldown, textcolor=white, offset=0, size = size.tiny, title="Sell Alert")
+
+//Alert Conditions 
+alertcondition(Buy[1], title='Buy Alert', message='Buy Alert')
+alertcondition(Sell[1], title='Sell Alert', message='Sell Alert')
+
+

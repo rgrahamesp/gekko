@@ -7,7 +7,7 @@
 //const log = require('../core/log.js');
 //const config = require('../core/util.js').getConfig();
 //const candleBatcher = require('../core/candleBatcher');
-const indicators = require('../modules/Indicators.js');
+const indicators = require('../modules/IndicatorsPlus.js');
 
 var marketGodStratV4_bac = {};
 
@@ -95,7 +95,7 @@ marketGodStratV4_bac.update = function (candle) {
   //rmaX3 = indicators.calc_rma(candleCount, rmaX3, Math.abs(plus - minus) / (sum == 0 ? 1.0 : sum), lensig);
   //var adx = 100.0 * rmaX3;
 
-  // RSI   - // var rsi = indicators.calc_rsi(prevClose, haclose, candleCount);
+  // RSI   - // var rsi = indicators.calc_rsi(prevClose, haclose, 9, candleCount);
   //var changeClose = haclose - prevClose;
   //up1 = indicators.calc_rma(candleCount, up1, Math.max(changeClose, 0), 9);
   //down1 = indicators.calc_rma(candleCount, down1, -Math.min(changeClose, 0), 9);
@@ -114,8 +114,8 @@ marketGodStratV4_bac.update = function (candle) {
   //var D = indicators.calc_sma(KVals, 3);
 
   // KDJ
-  //var hi = indicators.highest_high(candles, 9);
-  //var lo = indicators.lowest_low(candles, 9);
+  //var hi = indicators.highest_high_candles(candles, 9, true);
+  //var lo = indicators.lowest_low_candles(candles, 9, true);
   //var k = 100.0 * ((haclose - candle.low) / (hi - lo));
   //pK = indicators.calc_rma(candleCount, pK, k, 3);
   //pD = indicators.calc_rma(candleCount, pD, pK, 3);

@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{fc0be9af-5132-4880-9f27-02dc0b6a8685}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <StartupFile>gekko.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -430,12 +430,12 @@
     <Folder Include="web\vue\src\tools" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="modules\Indicators.js">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="modules\IndicatorsPlus.js" />
     <Compile Include="plugins\rtest.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="strategies\MarketGodV51.js" />
+    <Compile Include="strategies\MarketGodV41.js" />
     <Compile Include="strategies\MarketGodV4.js" />
     <Compile Include="strategies\MarketGodV4_bac.js" />
     <Compile Include="strategies\MarketGodV3.js" />

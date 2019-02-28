@@ -1,0 +1,83 @@
+Market God v4.1 Script - Public Access
+//@version=2
+
+study('MG Open Source Script', shorttitle='MG OS', overlay=true)
+
+
+Message = input(false,title = "Use on all Frames. Use across all markets. For best results, use Heikin Ashi candles. Setting Buy/Sell Alerts is Easy!" )
+
+
+//HA - CREDIT JRCPAC - TRADINGVIEW USER //
+
+haopen = security(heikinashi(tickerid), period, open)
+hahigh = security(heikinashi(tickerid), period, high)
+halow = security(heikinashi(tickerid), period, low)
+haclose = security(heikinashi(tickerid), period, close)
+
+o = haopen
+c = haclose
+src = haclose
+price = haclose
+
+//RSI//
+up1 = rma(max(change(src), 0), 9)
+down1 = rma(-min(change(src), 0), 9)
+rsi = down1 == 0 ? 100 : up1 == 0 ? 0 : 100 - (100 / (1 + up1 / down1))
+K = sma(stoch(c, hahigh, halow, 14), 3)
+D = sma(K, 3)
+
+//KDJ (CREDIT- USER: IAMALTCOIN - KDJ INDICATOR)//
+ilong = 9
+isig = 3
+bcwsma(s,l,m) =>
+        _s = s
+        _l = l
+        _m = m
+        _bcwsma = (_m*_s+(_l-_m)*nz(_bcwsma[1]))/_l
+        _bcwsma
+
+
+h = highest(hahigh, ilong)
+l = lowest(halow,ilong)
+RSV = 100*((c-l)/(h-l))
+pK = bcwsma(RSV, isig, 1)
+pD = bcwsma(pK, isig, 1)
+pJ = 3 * pK-2 * pD
+KD = avg(pK,pD)
+
+//EMA //
+EMA5 = ema(price,5)
+EMA7 = ema(price,7)
+EMA10 = ema(price,10)
+VOLEMA = ema(volume,10)
+
+
+//SLOW RSI// CREDIT - USER: LAZYBEAR (SLOW RSI INDICATOR)//
+periods = 6
+smooth =  14
+calc_wima(src, length) =>
+        MA_s=(src + nz(MA_s[1] * (length-1)))/length
+        MA_s
+
+r1 = ema( price, periods )
+r2 = iff( price > r1, price - r1, 0 )
+r3 = iff( price < r1, r1 - price, 0 )
+r4 = calc_wima( r2, smooth )
+r5 = calc_wima( r3, smooth )
+rr = iff( r5 == 0, 100, 100 - ( 100 / ( 1 + ( r4 / r5 ) ) ) )
+
+//BUY AND SELL CONDITIONS
+Buy= rising(rr,1) and rising(pJ,1) and rising(VOLEMA,1) and rising(EMA5,1)
+Sell= falling(rr,1) and falling(pJ,1) and rising(VOLEMA,1) and falling(EMA5,1)
+
+OscHelper = Buy ? 1 : Sell ? 0 : OscHelper[1]
+
+
+//PLOT
+plotshape(Buy and OscHelper[1]==0, color=#00e600, text= "Buy", location= location.belowbar,style= shape.arrowup, textcolor=#00e600, size = size.tiny, title="Buy Alert",editable=false)
+plotshape(Sell and OscHelper[1]==1, color=#ff3333, text= "Sell", location= location.abovebar,style= shape.arrowdown, textcolor= #ff3333, size = size.tiny, title="Sell Alert", editable=false)
+
+
+//Alert Conditions
+alertcondition(Buy, title='Buy Alert', message='Market God Buy Alert')
+alertcondition(Sell, title='Sell Alert', message='Market God Sell Alert')

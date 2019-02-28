@@ -1,12 +1,12 @@
 //
-// Market God V4 - strategy from Eric Thies
+// Market God V4.1 - strategy from Eric Thies
 //
 
 const longOnly = true;
 const onlyCloseLongInProfit = false;
 const indicators = require('../modules/IndicatorsPlus.js');
 
-var marketGodStratV4 = {};
+var marketGodStratV41 = {};
 
 var PositionState = {
   None: 0,
@@ -16,79 +16,80 @@ var PositionState = {
 var position = PositionState.None;
 var lastTrade;
 
-var ema1 = 0.0;
-var ema2 = 0.0;
-var ad = 0.0;
-var prevAd = 0.0;
+var pK = 0.0;
+var pD = 0.0;
+var prevPJ = 0.0;
+var pJ = 0.0;
+var EMA5 = 0.0;
+var prevEMA5 = 0.0;
+var VOLEMA = 0.0;
+var prevVOLEMA = 0.0;
 var rr = 0.0;
 var prevRR = 0.0;
-var stochVals = [];
-var KVals = [];
 var candles = [];
 var candleCount = 0;
 var buy = false;
 var sell = false;
 
-marketGodStratV4.onTrade = function (trade) {
-  console.log(trade);
+marketGodStratV41.onTrade = function (trade) {
+  //console.log(trade);
   lastTrade = trade;
 }
 
-marketGodStratV4.init = function (context) {
+marketGodStratV41.init = function (context) {
   if (context === undefined) {
     this.context = this;
   } else {
     this.context = context;
   }
 
-  this.name = 'Market God V4';
+  this.name = 'Market God V4.1';
 }
 
-marketGodStratV4.update = function (candle) {
+marketGodStratV41.update = function (candle) {
   candles.push(candle);
   if (candles.length > 16)
     candles.shift();
 
   var haclose = ((candle.ha.open + candle.ha.high + candle.ha.low + candle.ha.close) / 4); //[smoothing]
 
-  // Stoch SMA
-  var sval = indicators.calc_stoch_candles(candles, 14, true);
-  stochVals.push(sval);
-  if (stochVals.length > 3)
-    stochVals.shift();
-  var kval = indicators.calc_sma(stochVals, 3);
-  KVals.push(kval);
-  if (KVals.length > 3)
-    KVals.shift();
+  //KDJ (CREDIT- USER: IAMALTCOIN - KDJ INDICATOR)//
+  const ilong = 9;
+  const isig = 3;
+  var h = indicators.highest_high_candles(candles, ilong, true);
+  var l = indicators.lowest_low_candles(candles, ilong, true);
+  var RSV = 100.0 * ((haclose - l) / (h - l));
+  pK = indicators.calc_bcwsma(pK, RSV, isig, 1);
+  pD = indicators.calc_bcwsma(pD, pK, isig, 1);
+  prevPJ = pJ;
+  pJ = 3.0 * pK - 2.0 * pD;
+  //var KD = (pK + pD) / 2.0;
 
-  //SLOW RSI
+  //EMA
+  prevEMA5 = EMA5;
+  EMA5 = indicators.calc_ema(candleCount, EMA5, haclose, 5);
+  prevVOLEMA = VOLEMA;
+  VOLEMA = indicators.calc_ema(candleCount, VOLEMA, candle.volume, 10);
+
+  // SLOW RSI
   prevRR = rr; 
   rr = indicators.calc_slow_rsi(haclose, 6, 14, candleCount);
 
-  // EMA
-  ema1 = indicators.calc_ema(candleCount, ema1, haclose, 10);
-  ema2 = indicators.calc_ema(candleCount, ema2, ema1, 10);
-  var d = ema1 - ema2;
-  var zlema = ema1 + d;
-
-  //AD
-  prevAd = ad;
-  ad = ((candle.ha.close == candle.ha.high && candle.ha.close == candle.ha.low) || candle.ha.high == candle.ha.low ? 0.0 : ((2.0 * candle.ha.close - candle.ha.low - candle.ha.high) / (candle.ha.high - candle.ha.low)) * candle.volume);
-
   //BUY AND SELL CONDITIONS
-  var adRising = ad > prevAd;
-  var adFalling = ad < prevAd;
   var rrRising = rr > prevRR;
   var rrFalling = rr < prevRR;
-  var KRising = KVals.length > 1 ? KVals[KVals.length - 1] > KVals[KVals.length - 2] : false;
-  var KFalling = KVals.length > 1 ? KVals[KVals.length - 1] < KVals[KVals.length - 2] : false;
-  buy = adRising && haclose > zlema && rrRising && KRising;
-  sell = adFalling && haclose < zlema && rrFalling && KFalling;
+  var pjRising = pJ > prevPJ;
+  var pjFalling = pJ < prevPJ;
+  var volRising = VOLEMA > prevVOLEMA;
+  var ema5Rising = EMA5 > prevEMA5;
+  var ema5Falling = EMA5 < prevEMA5;
+  buy = rrRising && pjRising && volRising && ema5Rising;
+  sell = rrFalling && pjFalling && volRising && ema5Falling;
 
   candleCount++;
 }
 
-marketGodStratV4.Buy = function (candle) {
+marketGodStratV41.Buy = function (candle) {
   if (position == PositionState.Short) {
     this.advice('long');
     position = PositionState.None;
@@ -103,7 +104,7 @@ marketGodStratV4.Buy = function (candle) {
   //}
 }
 
-marketGodStratV4.Sell = function (candle) {
+marketGodStratV41.Sell = function (candle) {
   if (position == PositionState.None) {
     if (!longOnly) {
       this.advice('short');
@@ -121,7 +122,7 @@ marketGodStratV4.Sell = function (candle) {
   //}
 }
 
-marketGodStratV4.check = function (candle) {
+marketGodStratV41.check = function (candle) {
   if (buy) {
     this.Buy(candle);
   }
@@ -130,4 +131,4 @@ marketGodStratV4.check = function (candle) {
   }
 }
 
-module.exports = marketGodStratV4;
+module.exports = marketGodStratV41;
